@@ -58,8 +58,7 @@ function getVotes(client) {
     } else {
       console.log("Success get votes")
       var votes = collectVotesFromResult(result);
-      // io.sockets.emit("scores", JSON.stringify(votes));
-      socket.emit("scores", JSON.stringify(votes));
+      io.sockets.emit("scores", JSON.stringify(votes));
       console.log("Stringified: " + JSON.stringify(votes))
     }
 
