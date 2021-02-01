@@ -25,10 +25,10 @@ io.sockets.on('connection', function (socket) {
 
 var pool = new pg.Pool({
   // connectionString: 'postgres://postgres:postgres@db/postgres'
-  user: 'postgres',
+  // user: 'postgres',
   host: 'db',
-  database: 'postgres',
-  password: 'postgres',
+  database: 'postgres'
+  // password: 'postgres',
 });
 
 async.retry(
