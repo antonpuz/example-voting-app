@@ -51,15 +51,15 @@ async.retry(
 );
 
 function getVotes(client) {
-  console.log("In get votes")
+  console.log("In get votes");
   client.query('SELECT vote, COUNT(id) AS count FROM votes GROUP BY vote', [], function(err, result) {
     if (err) {
       console.error("Error performing query: " + err);
     } else {
-      console.log("Success get votes")
+      console.log("Success get votes");
       var votes = collectVotesFromResult(result);
       io.sockets.emit("scores", JSON.stringify(votes));
-      console.log("Stringified: " + JSON.stringify(votes))
+      console.log("Stringified: " + JSON.stringify(votes));
     }
 
     setTimeout(function() {getVotes(client) }, 1000);
@@ -68,11 +68,11 @@ function getVotes(client) {
 
 function collectVotesFromResult(result) {
   var votes = {a: 0, b: 0};
-  console.log("Collecting votes")
+  console.log("Collecting votes");
   result.rows.forEach(function (row) {
     votes[row.vote] = parseInt(row.count);
   });
-  console.log("Collecting votes finish: " + votes["a"] + ", b: " + votes["b"])
+  console.log("Collecting votes finish: " + votes["a"] + ", b: " + votes["b"]);
 
   return votes;
 }
@@ -90,7 +90,7 @@ app.use(function(req, res, next) {
 app.use(express.static(__dirname + '/views'));
 
 app.get('/', function (req, res) {
-  console.log("Getting /")
+  console.log("Getting /");
   res.sendFile(path.resolve(__dirname + '/views/index.html'));
 });
 
